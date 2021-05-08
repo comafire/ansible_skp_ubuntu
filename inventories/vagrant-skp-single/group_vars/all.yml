@@ -1,0 +1,9 @@
+---
+# language
+language_pack: "language-pack-en" # or "language-pack-ko"
+locale: "en_US.UTF-8" # or "ko_KR.UTF-8"
+# geerlingguy.ntp
+ntp_timezone: "Asia/Seoul" 
+# geerlingguy.docker
+docker_users: 
+  - "{{ lookup('config', 'DEFAULT_REMOTE_USER') }}"  

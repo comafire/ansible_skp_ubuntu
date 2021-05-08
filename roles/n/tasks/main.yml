@@ -1,0 +1,10 @@
+---
+- name: n - check package
+  stat: 
+    path: ~/n
+  register: n_pkg
+- name: n - install
+  shell: curl -sL https://git.io/n-install | bash -s -- -q
+  args:
+    warn: False
+  when: not n_pkg.stat.exists

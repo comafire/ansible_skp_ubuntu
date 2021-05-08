@@ -1,0 +1,5 @@
+---
+- name: git
+  become: yes
+  apt: name=git-all
+  

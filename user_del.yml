@@ -1,0 +1,12 @@
+---
+# usage ex: ansible-playbook -i inventories/[inventory] user_del.yml --extra-vars "user=[user]"
+- hosts: all
+  become: yes
+  tasks:
+  - name: remove user({{ user }})
+    user:
+      name: "{{ user }}"
+      state: absent
+      remove: yes
+
+...

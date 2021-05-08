@@ -1,0 +1,41 @@
+---
+- name: common roles
+  hosts: all
+  pre_tasks:
+    - name: apt update
+      become: yes
+      apt: update_cache=yes cache_valid_time=3600
+  roles:
+    - role: sudoers
+      tags: sudoers
+    - role: hosts
+      tags: hosts
+    - role: language
+      tags: language
+    - role: geerlingguy.ntp
+      # ansible-galaxy install --roles-path ./roles geerlingguy.ntp
+      # https://galaxy.ansible.com/geerlingguy/ntp
+      become: yes
+      tags: ntp
+    - role: git
+      tags: git
+    - role: direnv
+      tags: direnv
+    - role: pyenv
+      tags: pyenv
+    - role: jq
+      tags: jq
+    - role: envsubst
+      tags: envsubst
+    - role: n
+      tags: n 
+    - role: geerlingguy.docker
+      # ansible-galaxy install --roles-path ./roles geerlingguy.docker
+      # https://galaxy.ansible.com/geerlingguy/docker   
+      become: yes
+      tags: docker
+    - role: skp
+      tags: skp
+  tags: common
+
+...

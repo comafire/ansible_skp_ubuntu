@@ -1,0 +1,5 @@
+---
+- name: envsubst
+  become: yes
+  apt: name=gettext-base
+  

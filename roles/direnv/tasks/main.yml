@@ -1,0 +1,9 @@
+---
+- name: direnv
+  become: yes
+  apt: name=direnv
+- name: direnv
+  lineinfile:
+    path: "~/.bashrc"
+    line: 'eval "$(direnv hook bash)"'
+    backup: yes

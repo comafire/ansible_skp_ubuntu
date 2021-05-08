@@ -1,0 +1,3 @@
+---
+language_pack: "language-pack-en" # or "language-pack-ko"
+locale: "en_US.UTF-8" # or "ko_KR.UTF-8"

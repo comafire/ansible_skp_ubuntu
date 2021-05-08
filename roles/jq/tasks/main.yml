@@ -1,0 +1,5 @@
+---
+- name: jq
+  become: yes
+  apt: name=jq
+  

@@ -1,0 +1,4 @@
+---
+- name: hosts
+  become: yes
+  template: src=hosts.j2 dest=/etc/hosts owner=root group=root mode=0666 backup=yes

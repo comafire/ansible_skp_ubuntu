@@ -1,0 +1,39 @@
+---
+- name: pyenv - dependency packages
+  become: yes
+  apt: 
+    pkg:
+    - build-essential 
+    - make 
+    - libssl-dev 
+    - zlib1g-dev 
+    - libbz2-dev
+    - libreadline-dev 
+    - libsqlite3-dev 
+    - wget 
+    - curl 
+    - llvm 
+    - libncurses5-dev 
+    - libncursesw5-dev
+    - xz-utils 
+    - tk-dev 
+    - libffi-dev 
+    - liblzma-dev
+- name: pyenv - check package
+  stat: 
+    path: ~/.pyenv
+  register: pyenv
+- name: pyenv - install
+  shell: curl https://pyenv.run | bash
+  args:
+    warn: False
+  when: not pyenv.stat.exists
+- name: pyenv - setup .bashrc
+  blockinfile:
+    path: "~/.bashrc"
+    block: |
+      export PATH="$HOME/.pyenv/bin:$PATH"
+      eval "$(pyenv init --path)"
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"
+    backup: yes

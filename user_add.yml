@@ -1,0 +1,18 @@
+---
+# usage ex: ansible-playbook -i inventories/[inventory] user_add.yml --extra-vars "user=[user] pub_key=[public_key]"
+- hosts: all
+  become: yes
+  tasks:
+  - name: add user({{ user }})
+    user:
+      name: "{{ user }}"
+      group: sudo
+      shell: /bin/bash
+      skeleton: /etc/skel
+  - name: add SSH authorized_key({{ pub_key }})
+    authorized_key:
+      user: "{{ user }}"
+      state: present
+      key: "{{ lookup('file', '{{ pub_key }}') }}"       
+
+...

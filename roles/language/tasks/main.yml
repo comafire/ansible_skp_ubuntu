@@ -1,0 +1,24 @@
+---
+- name: language - install locales {{ language_pack }}
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - locales
+    - "{{ language_pack }}"
+- name: language - locale.gen {{ locale }}
+  become: yes
+  replace:
+    path: /etc/locale.gen
+    regexp: '^# {{ locale }} UTF-8'
+    replace: '{{ locale }} UTF-8'
+    backup: yes
+- name: language - locale.gen {{ locale }}
+  become: yes
+  shell: "locale-gen"
+- name: language - update-locale
+  become: yes
+  shell: "update-locale LC_ALL={{ locale }} LANG={{ locale }} LC_MESSAGES=POSIX"
+  args:
+    warn: False
