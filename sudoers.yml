@@ -1,0 +1,13 @@
+---
+# usage ex: ansible-playbook -i inventories/[inventory] sudoers.yml --extra-vars "user=[user]" --ask-become-pass
+- hosts: all
+  become: yes
+  tasks:
+  - name: sudoers {{ user }}
+    lineinfile:
+      path: "/etc/sudoers"
+      line: "{{ user }} ALL=(ALL) NOPASSWD:ALL"
+      validate: "/usr/sbin/visudo -cf %s"
+      backup: yes
+
+...

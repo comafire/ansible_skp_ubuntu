@@ -34,8 +34,6 @@
       # https://galaxy.ansible.com/geerlingguy/docker   
       become: yes
       tags: docker
-    - role: skp
-      tags: skp
   tags: common
 
 ...
